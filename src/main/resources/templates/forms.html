@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>form Lists</title>
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
+    <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container text-center">
+    <div>
+        <form th:action="@{/logout}" method="post">
+           
+            <input type="submit" value="Sign Out" />
+        </form>
+    </div>
+    
+    <h3><a th:href="@{/addFormDetails}">Add Form Details</a></h3>
+    
+    <div>
+        <h1>List of Forms Details</h1>
+    </div>
+     
+    <div>
+        <table class="table table-striped table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th>User ID</th>
+                    <th>Form No</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Mobile Number</th>
+                    <th>Address</th>
+                    <th>Edit Form</th>
+                    <th>Delete</th>
+                   
+                </tr>
+				
+            </thead>
+            <tbody>
+                <tr th:each="forms: ${listForms}">
+                    <td th:text="${forms.id}">User ID</td>
+                    <td th:text="${forms.formNo}">Form No</td>
+                    <td th:text="${forms.firstName}">First Name</td>
+                    <td th:text="${forms.lastName}">Last Name</td>
+                    <td th:text="${forms.mobileNumber}">Mobile No</td>
+                    <td th:text="${forms.address}">Address</td>
+                    <td><a th:href="@{/edit/{id}(id=${forms.id})}">Edit</a></td>
+                   <!--<td><a th:href="@{'/edit/' + ${forms.id}}">Edit Form</a></td>-->
+                   <td><a th:href="@{'/delete/' + ${forms.id}}">Delete</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>
